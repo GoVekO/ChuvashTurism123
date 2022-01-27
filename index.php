@@ -1,3 +1,7 @@
+<?php 
+        session_start();
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +20,12 @@
 </head>
 <body>
 
-
 <input type="checkbox" id="nav-toggle" hidden>
 <nav class="nav">
 <label for="nav-toggle" class="nav-toggle" onclick></label>
-<h2 class="logo"> <a href="./index.html">Чувашия</a> </h2>
+<h2 class="logo"> <a href="./index.php">Чувашия</a> </h2>
 <ul>
-    <li><a href="./index2.html">Музеи</a>
+    <li><a href="./index2.php">Музеи</a>
     <li><a href="#2">Экскурсии</a>
     <li><a href="#2">Туры</a>
     <li><a href="./contacts.html" class="contacts">Контакты</a>
@@ -35,10 +38,20 @@
             <div class="Logo"><a href="index.html"><img src="./img/logotip.jpg" alt="Logo" width="128" height="72" style="margin-left: 50px; border-radius: 20px; margin-top: -10px;"/> </a></div>
             <input type="text" placeholder="Введите район по которому хотите узнать информацию" class="search" style="background-color: #B3F4D9">
             <div class="buttons">
+            <?php
+                  if($_SESSION['name']==''){
+                ?>
               <button class="button button-primary" onclick="document.getElementById('id01').style.display='block'">
                 <img src="img/user.svg" alt="user" class="button-icon">
                 <span class="button-text" id="cart-button">Войти</span>
               </button>
+              <?php
+                  } else {
+              ?>
+                <a style="text-decoration: none; cursor: pointer"><span style="color: white; box-shadow: 0px 0px 4px 0px black; background-color: #25c9d5; padding: 15px; border-radius: 10px;"><?=$_SESSION['name']?></span></a>
+              <?php
+                  }
+              ?>
             </div>
           </header>
     </div>
@@ -97,7 +110,8 @@
   <div class="modal-content">
     <div class="container">
     <h1>Авторизация</h1>
-      <label for="email"><b>Email</b></label>
+    <form action="./vhod.php">
+    <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Email" type="email" name="email" required>
 
       <label for="psw"><b>Password</b></label>
@@ -105,9 +119,10 @@
       <div class="clearfix">
           <div class="buttonser">
         <div class="bye">
-        <button type="submit" class="signupbtn">Войти</button>
-        </div>
+        <input type="submit" class="rag" value="Войти" style="border: none; font-size: 15px; padding:10px; cursor: pointer; color: white; margin-top: 100px;">
 
+        </div>
+    </form>
         <div class="bye">
             <button class="rag" onclick="document.getElementById('registration').style.display='block'; document.getElementById('id01').style.display='none'">Зарегистрироваться</button>
         </div>
@@ -122,25 +137,26 @@
     <form class="modal-content" action="check.php" method="post">
       <div class="container">
         <h1>Регистрация</h1>
-        
+        <label for="name"><b>Name</b></label>
+        <input type="text" placeholder="Name" name="name" required>
+
         <label for="email"><b>Email</b></label>
         <input type="text" placeholder="Email" name="email" required>
-  
+        
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Password" name="psw" required>
+        <input type="password" placeholder="Password" name="password" required>
 
         <label for="psw-repeat"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
         
         <div class="clearfix">
           <div class="bye">
-          <button  type="submit" class="rag">Зарегистрироваться</button>
+          <input type="submit" class="rag" value="Зарегистрироваться" style="border: none; font-size: 15px; padding:10px; cursor: pointer; color: white;">
           </div>
         </div>
       </div>
     </form>
   </div>
-
 
 </body>
 </html>

@@ -1,3 +1,7 @@
+<?php 
+        session_start();
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,29 +24,38 @@
   <style>
     body { overflow-y: hidden; }
   </style>
-  <main
-  >
+  <main>
   
-        <div class="container">
-            <header class="header">
-              <div class="Logo"><a href="index.html"><img src="./img/logotip.jpg" alt="Logo" width="128" height="72" style="margin-left: 50px; border-radius: 20px;"/> </a></div>
-                <input type="text" placeholder="Введите район по которому хотите узнать информацию" class="search" style="background-color: #B3F4D9">
-                <div class="buttons">
-                  <button class="button button-primary" onclick="document.getElementById('id01').style.display='block'">
-                    <img src="img/user.svg" alt="user" class="button-icon">
-                    <span class="button-text">Войти</span>
-                  </button>
-                </div>
-              </header>
-        </div>
+  <div class="container">
+        <header class="header">
+            <div class="Logo"><a href="index.html"><img src="./img/logotip.jpg" alt="Logo" width="128" height="72" style="margin-left: 50px; border-radius: 20px; margin-top: -10px;"/> </a></div>
+            <input type="text" placeholder="Введите район по которому хотите узнать информацию" class="search" style="background-color: #B3F4D9">
+            <div class="buttons">
+            <?php
+                  if($_SESSION['name']==''){
+                ?>
+              <button class="button button-primary" onclick="document.getElementById('id01').style.display='block'">
+                <img src="img/user.svg" alt="user" class="button-icon">
+                <span class="button-text" id="cart-button">Войти</span>
+              </button>
+              <?php
+                  } else {
+              ?>
+                <a style="text-decoration: none; cursor: pointer"><span style="color: white; box-shadow: 0px 0px 4px 0px black; background-color: #25c9d5; padding: 15px; border-radius: 10px;"><?=$_SESSION['name']?></span></a>
+              <?php
+                  }
+              ?>
+            </div>
+          </header>
+    </div>
         <input type="checkbox" id="nav-toggle" hidden>
             <nav class="nav">
             <label for="nav-toggle" class="nav-toggle" onclick></label>
-            <h2 class="logo"> <a href="./index.html">Чувашия</a> </h2>
+            <h2 class="logo"> <a href="./index.php">Чувашия</a> </h2>
             
             <ul>
-                <li><a href="./index.html">Главная</a>
-                <li><a href="./index2.html">Музеи</a>
+                <li><a href="./index.php">Главная</a>
+                <li><a href="./index2.php">Музеи</a>
                 <li><a href="#">Экскурсии</a>
                 <li><a href="#">Туры</a>
                 <li><a href="./contacts.html" class="contacts">Контакты</a>
